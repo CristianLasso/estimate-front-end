@@ -4,7 +4,7 @@ import AppContext from "../../../context/AppContext";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import InputAdornment from '@mui/material/InputAdornment';
+import { usePredictMutation } from "../../../redux/api/mainAPI";
 
 const EstimateForm = () => {
 
@@ -17,17 +17,28 @@ const EstimateForm = () => {
     const [stratus, setStratus] = useState("");
     const [lat, setLat] = useState("");
     const [lon, setLon] = useState("");
+    const [predictReq, {isLoading: predictLoading, data:priceResp}] = usePredictMutation();
 
-    const handleClick = (event) => {
-        console.log(area + room + bath + garage + stratus + lat + lon);
+    const handleClick = async (event) => {
         state.saveEstimate(area, room, bath, garage, stratus, lat, lon);
-        setArea("");
-        setRoom("");
-        setBath("");
-        setGarage("");
-        setStratus("");
-        setLat("");
-        setLon("");
+        const prediction = {
+            area: area,
+            rooms: room,
+            bathrooms: area,
+            garages: garage,
+            sel: stratus,
+            longitude: lon,
+            latitude: lat,
+        }
+        await predictReq(prediction);
+        console.log(priceResp)
+        // setArea("");
+        // setRoom("");
+        // setBath("");
+        // setGarage("");
+        // setStratus("");
+        // setLat("");
+        // setLon("");
     };
 
     const estratos = [
