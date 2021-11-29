@@ -8,6 +8,7 @@ import logo from "../../assets/Estimation.jpg"
 import Box from '@mui/material/Box';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Button from '@mui/material/Button';
+import Map from '../../components/Map/Map';
 
 import { auth } from '../../config/firebase/firebase';
 import { useNavigate } from 'react-router-dom';
@@ -48,6 +49,7 @@ export const EstimatePage = () => {
                     <EstimateForm />
                     <EstimateResult />
                 </div>
+                <Map></Map>
             </div>
         </Box>
         
