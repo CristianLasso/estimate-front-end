@@ -5,13 +5,15 @@ import PriceCheckIcon from '@mui/icons-material/PriceCheck';
 
 const EstimateResult = () => {
 
+    
     const state = useContext(AppContext);
+    //const [estimate, setEstimate] = useState("");
 
     return(
         <div className="estimateResult">
             <div className="text-container">
                 <p>Resultado:</p>
-                <p className="text">$0000</p>
+                <p className="text">$ {state.estimate}</p>
             </div>
             <PriceCheckIcon fontSize="large" className="icon" />
         </div>

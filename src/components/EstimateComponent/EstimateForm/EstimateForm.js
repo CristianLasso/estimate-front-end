@@ -31,7 +31,8 @@ const EstimateForm = () => {
             latitude: lat,
         }
         await predictReq(prediction);
-        console.log(priceResp)
+        console.log(priceResp);
+        state.estimateCost(priceResp);
         // setArea("");
         // setRoom("");
         // setBath("");

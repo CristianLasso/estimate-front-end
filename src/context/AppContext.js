@@ -8,7 +8,7 @@ import { auth } from '../config/firebase/firebase';
 const AppContext = React.createContext();
 
 export const AppContextWrapper = (props) => {
-  const [estimate, setEstimate] = useState(null);
+  const [estimate, setEstimate] = useState("");
   const [users, setCurrentUser] = useState(null);
 
   const saveEstimate = (textArea, textRoom, textBath, textGarage, textStratus, textLat, textLon) => {
@@ -21,11 +21,11 @@ export const AppContextWrapper = (props) => {
       lat: textLat,
       lon: textLon
     }
-    estimateCost(newEstimate);
   }
 
   const estimateCost = (newEstimate) => {
-      console.log("Recibido " + newEstimate.room);
+      console.log("Recibido: " + newEstimate);
+      setEstimate(newEstimate);
   }
 
   ////////////////////////////////////////////////////////////////////
@@ -87,6 +87,7 @@ export const AppContextWrapper = (props) => {
     estimate,
     setEstimate,
     saveEstimate,
+    estimateCost,
     /////////////
     users,
     setCurrentUser,
