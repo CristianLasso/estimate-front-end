@@ -6,7 +6,7 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { usePredictMutation } from "../../../redux/api/mainAPI";
 
-const EstimateForm = () => {
+const EstimateForm = (props) => {
 
     const state = useContext(AppContext);
 
@@ -15,8 +15,10 @@ const EstimateForm = () => {
     const [bath, setBath] = useState("");
     const [garage, setGarage] = useState("");
     const [stratus, setStratus] = useState("");
-    const [lat, setLat] = useState("");
-    const [lon, setLon] = useState("");
+    const [lat, setLat] = useState(props.latData);
+    const [lon, setLon] = useState(props.lngData);
+    console.log(lat)
+    console.log(lon)
     const [predictReq, {isLoading: predictLoading, data:priceResp}] = usePredictMutation();
 
     const handleClick = async (event) => {

@@ -20,6 +20,9 @@ export const EstimatePage = () => {
     const navigate = useNavigate();
     const [error, setError] = useState('');
 
+    const [lat, setLat] = useState('');
+    const [lng, setLng] = useState('');
+
     const handleLogout = async () => {
         try {
           await logout();
@@ -46,10 +49,10 @@ export const EstimatePage = () => {
                     <h2>Registre la información de la vivienda </h2>
                 </div>
                 <div className="row">
-                    <EstimateForm />
+                    <EstimateForm latData={lat} lngData={lng} />
                     <EstimateResult />
                 </div>
-                <Map></Map>
+                <Map latData={setLat} lngData={setLng} ></Map>
             </div>
         </Box>
         
