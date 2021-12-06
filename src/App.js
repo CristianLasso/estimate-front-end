@@ -11,6 +11,7 @@ import { AuthProvider } from './context/AuthContext';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { PrivateRoute } from './components/PrivateRoute/PrivateRoute';
+import { PredictList } from './components/PredictList/PredictList';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route exact path='/signup' element={<SignUp/>} />
             <Route exact path='/' element={<PrivateRoute/>}>
               <Route exact path='/' element={<EstimatePage/>}/>
+              <Route exact path='/predictList' element={<PredictList/>}/>
             </Route>
           </Routes>
         </AuthProvider>

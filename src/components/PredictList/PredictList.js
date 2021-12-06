@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
-import EstimateForm from "../../components/EstimateComponent/EstimateForm/EstimateForm"
-import EstimateResult from "../../components/EstimateComponent/EstimateResult/EstimateResult"
-import "./EstimatePage.css"
+import TablePredictions from "../TablePredictions/TablePredictions";
+import "./PredictList.css"
 import AppContext from "../../context/AppContext"
 import { useAuth } from '../../context/AuthContext';
 import logo from "../../assets/Estimation.jpg"
@@ -13,15 +12,11 @@ import Map from '../../components/Map/Map';
 import { auth } from '../../config/firebase/firebase';
 import { useNavigate } from 'react-router-dom';
 
-export const EstimatePage = () => {
-    const state = useContext(AppContext);
+export const PredictList = () => {
 
     const { logout } = useAuth();
     const navigate = useNavigate();
     const [error, setError] = useState('');
-
-    const [lat, setLat] = useState('');
-    const [lng, setLng] = useState('');
 
     const handleLogout = async () => {
         try {
@@ -33,8 +28,8 @@ export const EstimatePage = () => {
       }
 
     const handlePredictions = () => {
-        navigate('/predictList')
-    };
+        navigate('/')
+    }
 
     return(
         <Box className="background">
@@ -48,18 +43,15 @@ export const EstimatePage = () => {
                     <Button onClick={handleLogout} variant="contained" color="success" startIcon={<AccountCircleIcon fontSize="large"/>}>
                         Logout
                     </Button>
+                    
                 </div>
                 <div className="image">
                     <img src={logo} alt="Logo" />
                 </div>
                 <div className="title">
-                    <h2>Registre la información de la vivienda </h2>
+                    <h2>Predicciones anteriormente realizadas</h2>
                 </div>
-                <div className="row">
-                    <EstimateForm latData={lat} lngData={lng} />
-                    <EstimateResult />
-                </div>
-                <Map latData={setLat} lngData={setLng} ></Map>
+                <TablePredictions></TablePredictions>
             </div>
         </Box>
     );

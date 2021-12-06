@@ -1,0 +1,34 @@
+.container {
+  align-content: space-between;
+  align-items: center;
+  width: 90%;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  align-content: space-between;
+  height: min-content;
+  padding-bottom: 10px;
+}
+
+.background {
+  background-image: url("../../assets/bluewall.jpg");
+  height: 100%;
+  width: 100%;
+}
+
+.image {
+  padding-bottom: 10px;
+}
+
+.title {
+  padding-bottom: 20px;
+  color: white;
+  padding-left: 150px;
+}
+
+.logout {
+  width: 90%;
+  display: flex;
+}
