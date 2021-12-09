@@ -40,7 +40,7 @@ export const SignUp = (props) => {
       try {
         await signup(email, password);
         state.saveUser(name, lastName, email, password)
-        navigate('/');
+        navigate('/home/estimate');
       } catch (error) {
         setError('Error de credenciales');
         console.log(error);
@@ -95,7 +95,7 @@ export const SignUp = (props) => {
             <Button color="success" sx={{marginTop:5, marginLeft:12}} variant="outlined" type='submit' value='registrarse'>Registrarse</Button>
           </form>
         
-          <p>Ya tienes una cuenta? <Link to='/login'>Inicia Sesion</Link> </p>
+          <p>Ya tienes una cuenta? <Link to='/'>Inicia Sesion</Link> </p>
         </Box>
       </Box>
     </Box>

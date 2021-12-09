@@ -19,11 +19,11 @@ function App() {
       <Router>
         <AuthProvider>
           <Routes>
-            <Route exact path='/login' element={<Login/>} />
+            <Route exact path='/' element={<Login/>} />
             <Route exact path='/signup' element={<SignUp/>} />
-            <Route exact path='/' element={<PrivateRoute/>}>
-              <Route exact path='/' element={<EstimatePage/>}/>
-              <Route exact path='/predictList' element={<PredictList/>}/>
+            <Route exact path='/home' element={<PrivateRoute/>}>
+              <Route exact path='/home/estimate' element={<EstimatePage/>}/>
+              <Route exact path='/home/predictList' element={<PredictList/>}/>
             </Route>
           </Routes>
         </AuthProvider>

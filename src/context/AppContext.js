@@ -28,6 +28,7 @@ export const AppContextWrapper = (props) => {
   ////////////////////////////////////////////////////////////////////
 
   const getUser = async(userId) => {
+    console.log(userId)
     const datos = await getDoc(doc(db,'users', userId))
     console.log(datos.data())
     setUsers(datos.data())

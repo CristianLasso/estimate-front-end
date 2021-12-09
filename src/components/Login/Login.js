@@ -7,6 +7,8 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Input from '@mui/material/Input';
 import Button from '@mui/material/Button';
+import GoogleIcon from '@mui/icons-material/Google';
+import FacebookIcon from '@mui/icons-material/Facebook';
 
 import { useAuth } from '../../context/AuthContext';
 
@@ -18,6 +20,8 @@ export const Login = () => {
   const state = useContext(AppContext);
 
   const { login } = useAuth();
+  const { loginGoogle } = useAuth();
+  const { loginFacebook } = useAuth();
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -32,11 +36,37 @@ export const Login = () => {
     try {
       await login(email, password);
       state.getUser(auth.currentUser.uid)
-      navigate('/');
+      navigate('/home/estimate');
     } catch (error) {
       setError('Datos incorrectos');
       setTimeout(() => setError(''), 1500);
     }
+  }
+
+  const handleGoogleLogin = async (e) => {
+    e.preventDefault();
+    try {
+      await loginGoogle();
+      state.getUser(auth.currentUser.uid)
+      navigate('/home/estimate');
+    } catch (error) {
+      setError('Datos incorrectos');
+      setTimeout(() => setError(''), 1500);
+    }
+    navigate('/home/estimate');
+  }
+
+  const handleFacebookLogin = async (e) => {
+    e.preventDefault();
+    try {
+      await loginFacebook();
+      state.getUser(auth.currentUser.uid)
+      navigate('/home/estimate');
+    } catch (error) {
+      setError('Datos incorrectos');
+      setTimeout(() => setError(''), 1500);
+    }
+    navigate('/home/estimate');
   }
 
   const style = {
@@ -76,7 +106,9 @@ export const Login = () => {
             </Box>   
             <Button color="success" sx={{marginTop:5, marginLeft:12}} variant="outlined" type='submit' value='Entrar'>Entrar</Button>
           </form>
-          
+          <div/>
+          <Button className="button" onClick={handleGoogleLogin} color="success" startIcon={<GoogleIcon fontSize="large"/>}>Entra con Google</Button>
+          <Button className="button" onClick={handleFacebookLogin} color="success" startIcon={<FacebookIcon fontSize="large"/>}>Entra con Facebook</Button>
           <p>No tienes una cuenta? <Link to='/signup'>Registrate</Link> </p>
         </Box>
       </Box>  

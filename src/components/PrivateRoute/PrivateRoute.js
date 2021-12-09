@@ -5,5 +5,5 @@ import { useAuth } from '../../context/AuthContext';
 export const PrivateRoute = ({ element: Component, ...rest }) => {
   const { currentUser } = useAuth();
 
-  return currentUser ? <Outlet /> : <Navigate to="/login" />;
+  return currentUser ? <Outlet /> : <Navigate to="/" />;
 }

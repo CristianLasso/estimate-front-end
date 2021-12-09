@@ -7,35 +7,15 @@ import AppContext from "../../context/AppContext"
 import { useAuth } from '../../context/AuthContext';
 import logo from "../../assets/Estimation.jpg"
 import Box from '@mui/material/Box';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import Button from '@mui/material/Button';
 import Map from '../../components/Map/Map';
 
-import { auth } from '../../config/firebase/firebase';
 import { useNavigate } from 'react-router-dom';
 
 export const EstimatePage = () => {
     const state = useContext(AppContext);
 
-    const { logout } = useAuth();
-    const navigate = useNavigate();
-    const [error, setError] = useState('');
-
     const [lat, setLat] = useState('');
     const [lng, setLng] = useState('');
-
-    const handleLogout = async () => {
-        try {
-          await logout();
-          navigate('/login');
-        } catch (error) {
-          setError('Server Error')
-        }
-      }
-
-    const handlePredictions = () => {
-        navigate('/predictList')
-    };
 
     return(
         <Box className="background">

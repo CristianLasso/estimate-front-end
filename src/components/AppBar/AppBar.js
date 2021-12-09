@@ -20,14 +20,14 @@ export default function ButtonAppBar() {
     const handleLogout = async () => {
         try {
           await logout();
-          navigate('/login');
+          navigate('/');
         } catch (error) {
           setError('Server Error')
         }
-      }
+    }
     
     const handlePredictions = () => {
-        navigate('/predictList')
+        navigate('/home/predictList')
     };
 
   return (
