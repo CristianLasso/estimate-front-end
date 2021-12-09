@@ -33,7 +33,7 @@ const EstimateForm = (props) => {
         }
         await predictReq(prediction);
         console.log("Response price:",priceResp);
-        state.estimateCost(priceResp);
+        state.setEstimateCost(priceResp);
         // setArea("");
         // setRoom("");
         // setBath("");
@@ -160,6 +160,7 @@ const EstimateForm = (props) => {
                         Predecir Precio
                     </Button>
                 </div>
+                
             </div>
         </form>
     );

@@ -1,5 +1,5 @@
 .estimateResult {
-  width: 25%;
+  width: 30%;
   height: 80px;
   display: flex;
   flex-direction: row;
@@ -13,8 +13,8 @@
 
 .text {
   color: black;
-  margin-left: 50px;
-  font-size: larger;
+  margin-left: 20px;
+  font-size: medium;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 

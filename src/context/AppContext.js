@@ -10,6 +10,7 @@ const AppContext = React.createContext();
 export const AppContextWrapper = (props) => {
   const [estimate, setEstimate] = useState("");
   const [users, setUsers] = useState(null);
+  const [estimateCost, setEstimateCost] = useState(0);
 
   const saveEstimate = (textArea, textRoom, textBath, textGarage, textStratus, textLat, textLon) => {
     const newEstimate = {
@@ -23,10 +24,6 @@ export const AppContextWrapper = (props) => {
     }
   }
 
-  const estimateCost = (newEstimate) => {
-      console.log("Recibido: " + newEstimate);
-      setEstimate(newEstimate);
-  }
 
   ////////////////////////////////////////////////////////////////////
 
@@ -92,6 +89,7 @@ export const AppContextWrapper = (props) => {
     setEstimate,
     saveEstimate,
     estimateCost,
+    setEstimateCost,
     /////////////
     users,
     setUsers,
