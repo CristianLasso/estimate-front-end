@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useContext} from 'react';
 import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -18,31 +18,23 @@ import Tooltip from '@mui/material/Tooltip';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
+import AppContext from "../../context/AppContext"
 
-function createData(name, calories, fat, carbs, protein) {
+function createData(area, rooms, bathrooms, garages, sel, lan, lon, result) {
   return {
-    name,
-    calories,
-    fat,
-    carbs,
-    protein,
+    area,
+    rooms,
+    bathrooms,
+    garages,
+    sel,
+    lan,
+    lon,
+    result,
   };
 }
 
-const rows = [
-  createData('Cupcake', 305, 3.7, 67, 4.3),
-  createData('Donut', 452, 25.0, 51, 4.9),
-  createData('Eclair', 262, 16.0, 24, 6.0),
-  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  createData('Gingerbread', 356, 16.0, 49, 3.9),
-  createData('Honeycomb', 408, 3.2, 87, 6.5),
-  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  createData('Jelly Bean', 375, 0.0, 94, 0.0),
-  createData('KitKat', 518, 26.0, 65, 7.0),
-  createData('Lollipop', 392, 0.2, 98, 0.0),
-  createData('Marshmallow', 318, 0, 81, 2.0),
-  createData('Nougat', 360, 19.0, 9, 37.0),
-  createData('Oreo', 437, 18.0, 63, 4.0),
+var rows = [
+  
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -77,7 +69,7 @@ function stableSort(array, comparator) {
 
 const headCells = [
   {
-    id: 'Area',
+    id: 'area',
     numeric: false,
     disablePadding: true,
     label: 'Area',
@@ -129,6 +121,7 @@ const headCells = [
 ];
 
 function EnhancedTableHead(props) {
+
   const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
     props;
   const createSortHandler = (property) => (event) => {
@@ -208,20 +201,6 @@ const EnhancedTableToolbar = (props) => {
           Predicciones
         </Typography>
       )}
-
-      {numSelected > 0 ? (
-        <Tooltip title="Delete">
-          <IconButton>
-            <DeleteIcon />
-          </IconButton>
-        </Tooltip>
-      ) : (
-        <Tooltip title="Filter list">
-          <IconButton>
-            <FilterListIcon />
-          </IconButton>
-        </Tooltip>
-      )}
     </Toolbar>
   );
 };
@@ -237,6 +216,14 @@ export default function EnhancedTable() {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  const state = useContext(AppContext);
+
+  console.log(state.users.Predictions);
+
+  rows = state.users.Predictions.map((predict) => 
+    createData(predict.area, predict.rooms, predict.bathrooms, predict.garages, predict.sel, predict.lam, predict.lon, predict.result)
+  )
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -280,10 +267,6 @@ export default function EnhancedTable() {
   const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
-  };
-
-  const handleChangeDense = (event) => {
-    setDense(event.target.checked);
   };
 
   const isSelected = (name) => selected.indexOf(name) !== -1;

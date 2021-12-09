@@ -9,6 +9,8 @@ const AppContext = React.createContext();
 
 export const AppContextWrapper = (props) => {
   const [estimate, setEstimate] = useState("");
+  const [lat, setLat] = useState("");
+  const [lng, setLng] = useState("");
   const [users, setUsers] = useState(null);
   const [estimateCost, setEstimateCost] = useState(0);
   const [marker, setMarker] = useState(['','']);
@@ -51,8 +53,6 @@ export const AppContextWrapper = (props) => {
     postUserBD(users)
   };
 
-
-
   const postUserBD = async(user) =>{
     try {
       await setDoc(doc(db, "users", user.id), 
@@ -89,6 +89,18 @@ export const AppContextWrapper = (props) => {
   const deleteUser = async (userId) => {
     await deleteDoc(doc(db, "users", userId));
   };
+
+  ////////////////////////////////
+
+  const saveLat = (newLat) => {
+    setLat(newLat);
+  }
+
+  const saveLng = (newLng) => {
+    setLng(newLng);
+  }
+
+  ////////////////////////////////
 
   const state = {
     estimate,
