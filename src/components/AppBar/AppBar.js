@@ -30,6 +30,10 @@ export default function ButtonAppBar() {
         navigate('/home/predictList')
     };
 
+    const handleList = () => {
+      navigate('/home/estimate')
+  };
+
   return (
     <Box className="background">
       <AppBar color="success" position="static">
@@ -38,6 +42,7 @@ export default function ButtonAppBar() {
             Stimate App
           </Typography>
           <Button className="button" onClick={handlePredictions} color="inherit" startIcon={<ApartmentIcon fontSize="large"/>}>Mis estimaciones</Button>
+          <Button className="button" onClick={handleList} color="inherit" startIcon={<ApartmentIcon fontSize="large"/>}>Predecir</Button>
           <Button className="button" onClick={handleLogout} color="inherit" startIcon={<AccountCircleIcon fontSize="large"/>}>Salir</Button>
         </Toolbar>
       </AppBar>
