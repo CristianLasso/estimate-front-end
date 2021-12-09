@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { usePredictMutation } from "../../../redux/api/mainAPI";
 import {auth} from "../../../config/firebase/firebase";
+import Swal from 'sweetalert2'
 
 const EstimateForm = (props) => {
 
@@ -41,6 +42,16 @@ const EstimateForm = (props) => {
         // setStratus("");
         // setLat("");
         // setLon("");
+        if((area === "" || room === "" || bath === "" || garage === "" || stratus === "" || lat === "" || lon === "")){
+            return (
+                Swal.fire({
+                    title: 'Falta algo?',
+                    text: 'Asegurate de completar todos los campos!',
+                    icon: 'question',
+                    confirmButtonColor: '#388e3c',
+                    confirmButtonText: "Entendido!"
+                }))
+        }
     };
 
     const estratos = [

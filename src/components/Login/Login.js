@@ -9,6 +9,7 @@ import Input from '@mui/material/Input';
 import Button from '@mui/material/Button';
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
+import Swal from 'sweetalert2'
 
 import { useAuth } from '../../context/AuthContext';
 
@@ -38,8 +39,16 @@ export const Login = () => {
       state.getUser(auth.currentUser.uid)
       navigate('/home/estimate');
     } catch (error) {
+      console.log(error);
       setError('Datos incorrectos');
       setTimeout(() => setError(''), 1500);
+      return (Swal.fire({
+        icon: 'error',
+        title: 'Ups...',
+        text: 'Verifica que tu información sea correcta!',
+        confirmButtonColor: '#388e3c',
+        confirmButtonText: "Entendido!"
+      }))
     }
   }
 
@@ -48,6 +57,7 @@ export const Login = () => {
     try {
       await loginGoogle();
       state.getUser(auth.currentUser.uid)
+      state.saveUser(auth.currentUser.displayName,"User",auth.currentUser.email, "Password")
       navigate('/home/estimate');
     } catch (error) {
       setError('Datos incorrectos');

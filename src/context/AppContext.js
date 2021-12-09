@@ -75,8 +75,12 @@ export const AppContextWrapper = (props) => {
       email: userEmail,
       password: md5(userPassword)
     };
-
-    postUserBD(newUser);
+    try {
+      postUserBD(newUser);
+    } catch (e) {
+      console.log(e);
+    }
+    
   };
 
 
