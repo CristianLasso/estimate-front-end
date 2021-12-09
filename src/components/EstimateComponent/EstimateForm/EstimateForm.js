@@ -136,7 +136,8 @@ const EstimateForm = (props) => {
                         required={true}
                         label="Latitud"
                         type="number"
-                        value={lat}
+                        disabled={true}
+                        value={state.marker[0]}
                         onChange={(event) => setLat(event.target.value)}
                     />
                     <TextField
@@ -146,7 +147,8 @@ const EstimateForm = (props) => {
                         required={true}
                         label="Longitud"
                         type="number"
-                        value={lon}
+                        disabled={true}
+                        value={state.marker[1]}
                         onChange={(event) => setLon(event.target.value)}
                     />
                 </div>
