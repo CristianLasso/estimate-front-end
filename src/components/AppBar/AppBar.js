@@ -37,8 +37,8 @@ export default function ButtonAppBar() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Stimate App
           </Typography>
-          <Button className="button" onClick={handlePredictions} color="inherit" startIcon={<ApartmentIcon fontSize="large"/>}>Predictions</Button>
-          <Button className="button" onClick={handleLogout} color="inherit" startIcon={<AccountCircleIcon fontSize="large"/>}>Logout</Button>
+          <Button className="button" onClick={handlePredictions} color="inherit" startIcon={<ApartmentIcon fontSize="large"/>}>Mis estimaciones</Button>
+          <Button className="button" onClick={handleLogout} color="inherit" startIcon={<AccountCircleIcon fontSize="large"/>}>Salir</Button>
         </Toolbar>
       </AppBar>
     </Box>

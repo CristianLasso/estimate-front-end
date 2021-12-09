@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Input from '@mui/material/Input';
 import Button from '@mui/material/Button';
+import Swal from 'sweetalert2'
 
 import { useAuth } from '../../context/AuthContext';
 
@@ -45,6 +46,13 @@ export const SignUp = (props) => {
         setError('Error de credenciales');
         console.log(error);
         setTimeout(() => setError(''), 1500);
+        return (Swal.fire({
+          icon: 'error',
+          title: 'Ups...',
+          text: 'Verifica que la información sea correcta!',
+          confirmButtonColor: '#388e3c',
+          confirmButtonText: "Entendido!"
+        }))
       }
     }
   }
@@ -67,7 +75,7 @@ export const SignUp = (props) => {
   }
 
   return (
-    <Box className='background'>
+    <Box>
       <Box  sx={style}>
         <Box >
           {error && <p className='error' >{error}</p>}

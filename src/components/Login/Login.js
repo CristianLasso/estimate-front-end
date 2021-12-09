@@ -9,6 +9,7 @@ import Input from '@mui/material/Input';
 import Button from '@mui/material/Button';
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
+import Swal from 'sweetalert2'
 
 import { useAuth } from '../../context/AuthContext';
 
@@ -38,8 +39,16 @@ export const Login = () => {
       state.getUser(auth.currentUser.uid)
       navigate('/home/estimate');
     } catch (error) {
+      console.log(error);
       setError('Datos incorrectos');
       setTimeout(() => setError(''), 1500);
+      return (Swal.fire({
+        icon: 'error',
+        title: 'Ups...',
+        text: 'Verifica que tu información sea correcta!',
+        confirmButtonColor: '#388e3c',
+        confirmButtonText: "Entendido!"
+      }))
     }
   }
 
@@ -48,6 +57,7 @@ export const Login = () => {
     try {
       await loginGoogle();
       state.getUser(auth.currentUser.uid)
+      state.saveUser(auth.currentUser.displayName,"User",auth.currentUser.email, "Password")
       navigate('/home/estimate');
     } catch (error) {
       setError('Datos incorrectos');
@@ -86,10 +96,12 @@ export const Login = () => {
     width:300
   }
 
+  const button = {
+    padding: 5
+  };
 
 
   return (
-    <Box className="background">
       <Box sx={style}>
         <Box >
           <Typography sx={{textAlign:'center'}} id="modal-modal-title" variant="h2" component="h1">
@@ -107,12 +119,10 @@ export const Login = () => {
             <Button color="success" sx={{marginTop:5, marginLeft:12}} variant="outlined" type='submit' value='Entrar'>Entrar</Button>
           </form>
           <div/>
-          <Button className="button" onClick={handleGoogleLogin} color="success" startIcon={<GoogleIcon fontSize="large"/>}>Entra con Google</Button>
-          <Button className="button" onClick={handleFacebookLogin} color="success" startIcon={<FacebookIcon fontSize="large"/>}>Entra con Facebook</Button>
+          <Button sx={{marginTop:2}} onClick={handleGoogleLogin} variant="outlined" color="success" startIcon={<GoogleIcon fontSize="large"/>}>Entra con Google</Button>
+          <Button sx={{marginTop:2}} onClick={handleFacebookLogin} variant="outlined" color="success" startIcon={<FacebookIcon fontSize="large"/>}>Entra con Facebook</Button>
           <p>No tienes una cuenta? <Link to='/signup'>Registrate</Link> </p>
         </Box>
-      </Box>  
-    </Box>
-    
+      </Box>
   )
 }
