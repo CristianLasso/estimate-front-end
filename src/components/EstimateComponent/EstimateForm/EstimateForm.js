@@ -8,7 +8,7 @@ import { usePredictMutation } from "../../../redux/api/mainAPI";
 import {auth} from "../../../config/firebase/firebase";
 import Swal from 'sweetalert2'
 
-const EstimateForm = (props) => {
+const EstimateForm = () => {
 
     const state = useContext(AppContext);
     const [area, setArea] = useState("");
@@ -16,8 +16,8 @@ const EstimateForm = (props) => {
     const [bath, setBath] = useState("");
     const [garage, setGarage] = useState("");
     const [stratus, setStratus] = useState("");
-    const [lat, setLat] = useState(props.latData);
-    const [lon, setLon] = useState(props.lngData);
+    const [lat, setLat] = useState(state.lat);
+    const [lon, setLon] = useState(state.lon);
     const [predictReq, {isLoading: predictLoading, data:priceResp}] = usePredictMutation();
 
     const handleClick = async (event) => {

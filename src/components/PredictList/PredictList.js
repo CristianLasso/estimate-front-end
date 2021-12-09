@@ -16,7 +16,7 @@ import { useGetPredictionsQuery } from "../../redux/api/mainAPI";
 
 export const PredictList = () => {
     const state = useContext(AppContext);
-    console.log(state.users);
+    console.log(state.users.Predictions);
     const { logout } = useAuth();
     const navigate = useNavigate();
     const [error, setError] = useState('');
