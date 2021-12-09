@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import EstimateForm from "../../components/EstimateComponent/EstimateForm/EstimateForm"
 import EstimateResult from "../../components/EstimateComponent/EstimateResult/EstimateResult"
+import AppBar from "../../components/AppBar/AppBar"
 import "./EstimatePage.css"
 import AppContext from "../../context/AppContext"
 import { useAuth } from '../../context/AuthContext';
@@ -39,16 +40,7 @@ export const EstimatePage = () => {
     return(
         <Box className="background">
             <div className="container">
-                <div className="row">
-                    <div className="logout"></div>
-                    <Button onClick={handlePredictions} variant="contained" color="success" startIcon={<AccountCircleIcon fontSize="large"/>}>
-                        Predictions
-                    </Button>
-                    <div className="logout"></div>
-                    <Button onClick={handleLogout} variant="contained" color="success" startIcon={<AccountCircleIcon fontSize="large"/>}>
-                        Logout
-                    </Button>
-                </div>
+                <AppBar/>
                 <div className="image">
                     <img src={logo} alt="Logo" />
                 </div>
