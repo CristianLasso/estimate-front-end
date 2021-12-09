@@ -75,7 +75,7 @@ export const SignUp = (props) => {
   }
 
   return (
-    <Box className='background'>
+    <Box>
       <Box  sx={style}>
         <Box >
           {error && <p className='error' >{error}</p>}
