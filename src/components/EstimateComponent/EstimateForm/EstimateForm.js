@@ -21,6 +21,8 @@ const EstimateForm = (props) => {
     const [predictReq, {isLoading: predictLoading, data:priceResp}] = usePredictMutation();
 
     const handleClick = async (event) => {
+        setLat(state.marker[0])
+        setLon(state.marker[1])
         state.saveEstimate(area, room, bath, garage, stratus, lat, lon);
         const prediction = {
             area: area,
@@ -42,7 +44,7 @@ const EstimateForm = (props) => {
         // setStratus("");
         // setLat("");
         // setLon("");
-        if((area === "" || room === "" || bath === "" || garage === "" || stratus === "" || lat === "" || lon === "")){
+        if((area === "" || room === "" || bath === "" || garage === "" || stratus === "")){
             return (
                 Swal.fire({
                     title: 'Falta algo?',
@@ -149,7 +151,7 @@ const EstimateForm = (props) => {
                         type="number"
                         disabled={true}
                         value={state.marker[0]}
-                        onChange={(event) => setLat(event.target.value)}
+                        
                     />
                     <TextField
                         color="success"
@@ -160,7 +162,6 @@ const EstimateForm = (props) => {
                         type="number"
                         disabled={true}
                         value={state.marker[1]}
-                        onChange={(event) => setLon(event.target.value)}
                     />
                 </div>
                 <div className="container">

@@ -18,7 +18,6 @@ const Map = (props) => {
                 onClick={(event) => {
                     setMarker(event.latLng);
                     let latLngValue = event.latLng.toUrlValue().split(",");
-                    console.log(latLngValue);
                     setCenter({lat: parseFloat(latLngValue[0]), lng:parseFloat(latLngValue[1])});
                     state.setMarker(latLngValue);
                     props.latData(event.latLng.lat);
