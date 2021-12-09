@@ -9,7 +9,7 @@ const AppContext = React.createContext();
 
 export const AppContextWrapper = (props) => {
   const [estimate, setEstimate] = useState("");
-  const [users, setCurrentUser] = useState(null);
+  const [users, setUsers] = useState(null);
 
   const saveEstimate = (textArea, textRoom, textBath, textGarage, textStratus, textLat, textLon) => {
     const newEstimate = {
@@ -31,15 +31,15 @@ export const AppContextWrapper = (props) => {
   ////////////////////////////////////////////////////////////////////
 
   const getUser = async(userId) => {
-    const datos = await getDoc(doc(db,'usuarios', userId))
-    console.log(datos.data().user.name)
-    setCurrentUser(datos.data().user)
+    const datos = await getDoc(doc(db,'users', userId))
+    console.log(datos.data())
+    setUsers(datos.data())
     
   }
 
   const findUser = async(userId) => {
-    const datos = await getDoc(doc(db,'usuarios', userId))
-    return datos.data().user
+    const datos = await getDoc(doc(db,'users', userId))
+    return datos.data()
   }
 
   const setUser = ( newName, newLastName) => {
@@ -56,8 +56,12 @@ export const AppContextWrapper = (props) => {
 
   const postUserBD = async(user) =>{
     try {
-      await setDoc(doc(db, "usuarios", user.id), 
-      {user});
+      await setDoc(doc(db, "users", user.id), 
+      {id: auth.currentUser.uid,
+        name: user.name,
+        lastName: user.lastName,
+        email: user.email,
+        password: md5(user.password)});
       getUser(user.id);
     } catch (e) {
       console.error("Error adding document: ", e);
@@ -80,7 +84,7 @@ export const AppContextWrapper = (props) => {
 
 
   const deleteUser = async (userId) => {
-    await deleteDoc(doc(db, "usuarios", userId));
+    await deleteDoc(doc(db, "users", userId));
   };
 
   const state = {
@@ -90,7 +94,7 @@ export const AppContextWrapper = (props) => {
     estimateCost,
     /////////////
     users,
-    setCurrentUser,
+    setUsers,
     getUser,
     setUser,
     saveUser,

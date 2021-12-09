@@ -5,11 +5,11 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { usePredictMutation } from "../../../redux/api/mainAPI";
+import {auth} from "../../../config/firebase/firebase";
 
 const EstimateForm = (props) => {
 
     const state = useContext(AppContext);
-
     const [area, setArea] = useState("");
     const [room, setRoom] = useState("");
     const [bath, setBath] = useState("");
@@ -17,8 +17,6 @@ const EstimateForm = (props) => {
     const [stratus, setStratus] = useState("");
     const [lat, setLat] = useState(props.latData);
     const [lon, setLon] = useState(props.lngData);
-    console.log(lat)
-    console.log(lon)
     const [predictReq, {isLoading: predictLoading, data:priceResp}] = usePredictMutation();
 
     const handleClick = async (event) => {
@@ -31,9 +29,10 @@ const EstimateForm = (props) => {
             sel: stratus,
             longitude: lon,
             latitude: lat,
+            userId: auth.currentUser.uid
         }
         await predictReq(prediction);
-        console.log(priceResp);
+        console.log("Response price:",priceResp);
         state.estimateCost(priceResp);
         // setArea("");
         // setRoom("");

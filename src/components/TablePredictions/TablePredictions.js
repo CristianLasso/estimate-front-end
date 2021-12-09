@@ -77,35 +77,55 @@ function stableSort(array, comparator) {
 
 const headCells = [
   {
-    id: 'name',
+    id: 'Area',
     numeric: false,
     disablePadding: true,
-    label: 'Dessert (100g serving)',
+    label: 'Area',
   },
   {
-    id: 'calories',
+    id: 'rooms',
     numeric: true,
     disablePadding: false,
-    label: 'Calories',
+    label: 'Habitaciones',
   },
   {
-    id: 'fat',
+    id: 'bathrooms',
     numeric: true,
     disablePadding: false,
-    label: 'Fat (g)',
+    label: 'Baños',
   },
   {
-    id: 'carbs',
+    id: 'garages',
     numeric: true,
     disablePadding: false,
-    label: 'Carbs (g)',
+    label: 'Garages',
   },
   {
-    id: 'protein',
+    id: 'sel',
     numeric: true,
     disablePadding: false,
-    label: 'Protein (g)',
+    label: 'Estrato',
   },
+  {
+    id: 'lan',
+    numeric: true,
+    disablePadding: false,
+    label: 'Latitud',
+  },
+  {
+    id: 'lon',
+    numeric: true,
+    disablePadding: false,
+    label: 'Longitud',
+  },
+  {
+    id: 'result',
+    numeric: true,
+    disablePadding: false,
+    label: 'Precio',
+  },
+  
+  
 ];
 
 function EnhancedTableHead(props) {
@@ -317,12 +337,15 @@ export default function EnhancedTable() {
                         scope="row"
                         padding="none"
                       >
-                        {row.name}
+                        {row.area}
                       </TableCell>
-                      <TableCell align="right">{row.calories}</TableCell>
-                      <TableCell align="right">{row.fat}</TableCell>
-                      <TableCell align="right">{row.carbs}</TableCell>
-                      <TableCell align="right">{row.protein}</TableCell>
+                      <TableCell align="right">{row.rooms}</TableCell>
+                      <TableCell align="right">{row.bathrooms}</TableCell>
+                      <TableCell align="right">{row.garages}</TableCell>
+                      <TableCell align="right">{row.sel}</TableCell>
+                      <TableCell align="right">{row.lan}</TableCell>
+                      <TableCell align="right">{row.lon}</TableCell>
+                      <TableCell align="right">{row.result}</TableCell>
                     </TableRow>
                   );
                 })}

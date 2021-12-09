@@ -13,7 +13,7 @@ const EstimateResult = () => {
         <div className="estimateResult">
             <div className="text-container">
                 <p>Resultado:</p>
-                <p className="text">$ {state.estimate}</p>
+                <p className="text">$ {state.estimateCost()}</p>
             </div>
             <PriceCheckIcon fontSize="large" className="icon" />
         </div>

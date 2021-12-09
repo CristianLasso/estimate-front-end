@@ -4,13 +4,13 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const mainAPI = createApi({
   reducerPath: "mainAPI",
   baseQuery: fetchBaseQuery(
-    { baseUrl: process.env.BACKEND_DEV_URL 
+    { baseUrl: "http://127.0.0.1:5000/"
     }),
   endpoints: (builder) => ({
    
-//    getPricePredicted: builder.query({
-//       query: () => `/predict`,
-//     }),
+   getPredictions: builder.query({
+      query: (userId) => `predictions/${userId}`,
+    }),
     predict: builder.mutation({
       query: (prediction) => ({
         url: "predict",
@@ -18,11 +18,12 @@ export const mainAPI = createApi({
         body: prediction,      
       }),
     }),
+    
    
     
   }),
 });
 export const {
     usePredictMutation,
-    useGetPricePredictedQuery
+    useGetPredictionsQuery
 } = mainAPI;
