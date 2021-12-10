@@ -100,7 +100,7 @@ export const Login = () => {
 
   return (
     <Box>
-        <img width="1366" height="654" src={background} alt="background" />
+        <img width="100%" height="100%" src={background} alt="background" />
         <Box sx={style}>
           <Box >
             
