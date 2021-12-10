@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import ApartmentIcon from '@mui/icons-material/Apartment';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import "./AppBar.css"
 
 import { useAuth } from '../../context/AuthContext';
@@ -35,17 +36,15 @@ export default function ButtonAppBar() {
   };
 
   return (
-    <Box className="background">
       <AppBar color="success" position="static">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Stimate App
           </Typography>
+          <Button className="button" onClick={handleList} color="inherit" startIcon={<AttachMoneyIcon fontSize="large"/>}>Predecir</Button>
           <Button className="button" onClick={handlePredictions} color="inherit" startIcon={<ApartmentIcon fontSize="large"/>}>Mis estimaciones</Button>
-          <Button className="button" onClick={handleList} color="inherit" startIcon={<ApartmentIcon fontSize="large"/>}>Predecir</Button>
           <Button className="button" onClick={handleLogout} color="inherit" startIcon={<AccountCircleIcon fontSize="large"/>}>Salir</Button>
         </Toolbar>
       </AppBar>
-    </Box>
   );
 }

@@ -222,7 +222,7 @@ export default function EnhancedTable() {
   console.log(state.users.Predictions);
 
   rows = state.users.Predictions.map((predict) => 
-    createData(predict.area, predict.rooms, predict.bathrooms, predict.garages, predict.sel, predict.lam, predict.lon, predict.result)
+    createData(predict.area, predict.rooms, predict.bathrooms, predict.garages, predict.sel, predict.lan, predict.lon, predict.result)
   )
 
   const handleRequestSort = (event, property) => {

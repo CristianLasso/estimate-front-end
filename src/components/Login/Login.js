@@ -10,6 +10,7 @@ import Button from '@mui/material/Button';
 import GoogleIcon from '@mui/icons-material/Google';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import Swal from 'sweetalert2'
+import background from "../../assets/bluewall.jpg"
 
 import { useAuth } from '../../context/AuthContext';
 
@@ -96,33 +97,34 @@ export const Login = () => {
     width:300
   }
 
-  const button = {
-    padding: 5
-  };
-
 
   return (
-      <Box sx={style}>
-        <Box >
-          <Typography sx={{textAlign:'center'}} id="modal-modal-title" variant="h2" component="h1">
-              Iniciar Sesion
-            </Typography>
+    <Box>
+        <img width="1366" height="654" src={background} alt="background" />
+        <Box sx={style}>
+          <Box >
+            
+            <Typography sx={{textAlign:'center'}} id="modal-modal-title" variant="h2" component="h1">
+                Iniciar Sesion
+              </Typography>
+          </Box>
+          <Box sx={{display:"flex", flexDirection: 'column' , alignItems: 'center', }}>
+            <form onSubmit={handleSubmit}>
+              <Box sx={{marginTop:2}}>
+                <Input color="success" sx={inputStyle} type='email' placeholder='Email' onChange={handleEmail} />
+              </Box>
+              <Box sx={{marginTop:5}}>
+                <Input color="success" sx={inputStyle} type='password' placeholder='Contraseña' onChange={handlePassword} />
+              </Box>   
+              <Button color="success" sx={{marginTop:5, marginLeft:12}} variant="outlined" type='submit' value='Entrar'>Entrar</Button>
+            </form>
+            <div/>
+            <Button sx={{marginTop:2}} onClick={handleGoogleLogin} variant="outlined" color="success" startIcon={<GoogleIcon fontSize="large"/>}>Entra con Google</Button>
+            <Button disabled sx={{marginTop:2}} onClick={handleFacebookLogin} variant="outlined" color="success" startIcon={<FacebookIcon fontSize="large"/>}>Entra con Facebook</Button>
+            <p>No tienes una cuenta? <Link to='/signup'>Registrate</Link> </p>
+          </Box>
         </Box>
-        <Box sx={{display:"flex", flexDirection: 'column' , alignItems: 'center', }}>
-          <form onSubmit={handleSubmit}>
-            <Box sx={{marginTop:2}}>
-              <Input color="success" sx={inputStyle} type='email' placeholder='Email' onChange={handleEmail} />
-            </Box>
-            <Box sx={{marginTop:5}}>
-              <Input color="success" sx={inputStyle} type='password' placeholder='Contraseña' onChange={handlePassword} />
-            </Box>   
-            <Button color="success" sx={{marginTop:5, marginLeft:12}} variant="outlined" type='submit' value='Entrar'>Entrar</Button>
-          </form>
-          <div/>
-          <Button sx={{marginTop:2}} onClick={handleGoogleLogin} variant="outlined" color="success" startIcon={<GoogleIcon fontSize="large"/>}>Entra con Google</Button>
-          <Button sx={{marginTop:2}} onClick={handleFacebookLogin} variant="outlined" color="success" startIcon={<FacebookIcon fontSize="large"/>}>Entra con Facebook</Button>
-          <p>No tienes una cuenta? <Link to='/signup'>Registrate</Link> </p>
-        </Box>
-      </Box>
+    </Box>
+      
   )
 }

@@ -11,7 +11,7 @@ const Map = (props) => {
         googleMapsApiKey="AIzaSyAiX6ZDnsSXRDNXtif-hFt5C5WYSaPrV8Y"
         >
             <GoogleMap
-                mapContainerStyle={{width: '1460px', height: '600px'}}
+                mapContainerStyle={{width: '1325px', height: '600px'}}
                 center={center}
                 zoom={12}
 
