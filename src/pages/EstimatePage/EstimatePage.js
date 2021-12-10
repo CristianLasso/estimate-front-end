@@ -20,7 +20,10 @@ export const EstimatePage = () => {
     return(
         <Box className="background">
             <div className="container">
-                <AppBar/>
+                <div className="bar">
+                    <AppBar />
+                </div>
+                
                 <div className="image">
                     <img src={logo} alt="Logo" />
                 </div>

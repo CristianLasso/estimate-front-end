@@ -1,6 +1,6 @@
 .background {
-  width: 110%;
   color: white;
+  width: max-content;
 }
 
 .button {

@@ -10,6 +10,7 @@
   align-content: space-between;
   height: min-content;
   padding-bottom: 10px;
+  padding-left: 40px;
 }
 
 .background {
@@ -18,8 +19,14 @@
   width: 100%;
 }
 
+.bar {
+  padding-left: 20px;
+  padding-bottom: 15px;
+}
+
 .image {
   padding-bottom: 10px;
+  padding-left: 20px;
 }
 
 .title {

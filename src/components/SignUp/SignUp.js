@@ -7,6 +7,7 @@ import Box from '@mui/material/Box';
 import Input from '@mui/material/Input';
 import Button from '@mui/material/Button';
 import Swal from 'sweetalert2'
+import background from "../../assets/bluewall.jpg"
 
 import { useAuth } from '../../context/AuthContext';
 
@@ -63,7 +64,7 @@ export const SignUp = (props) => {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 400,
-    height:600,
+    height: 560,
     bgcolor: 'background.paper',
     border: '2px solid #000',
     boxShadow: 10,
@@ -76,6 +77,7 @@ export const SignUp = (props) => {
 
   return (
     <Box>
+      <img width="1366" height="654" src={background} alt="background" />
       <Box  sx={style}>
         <Box >
           {error && <p className='error' >{error}</p>}
