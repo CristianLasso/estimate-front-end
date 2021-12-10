@@ -6,6 +6,8 @@ const Map = (props) => {
     const [marker, setMarker] = useState({lat: props.lat , lng: props.lng});
     const [center, setCenter] = useState({lat:4.60971, lng:-74.08175})
     const state = useContext(AppContext);
+
+   
     return(
         <LoadScript
         googleMapsApiKey="AIzaSyAiX6ZDnsSXRDNXtif-hFt5C5WYSaPrV8Y"

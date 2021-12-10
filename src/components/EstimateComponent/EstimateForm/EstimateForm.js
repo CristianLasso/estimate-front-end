@@ -50,9 +50,7 @@ const EstimateForm = () => {
             longitude: state.marker[1]
         };
         predictReq(prediction);
-        nearHousesReq(latlng);
         state.setEstimateCost(priceResp);
-        state.setNearHouses(latlng);
     };
 
     const estratos = [
