@@ -38,6 +38,7 @@ export const Login = () => {
     try {
       await login(email, password);
       state.getUser(auth.currentUser.uid)
+      state.setEstimateCost(0);
       navigate('/home/estimate');
     } catch (error) {
       console.log(error);
@@ -57,8 +58,7 @@ export const Login = () => {
     e.preventDefault();
     try {
       await loginGoogle();
-      state.getUser(auth.currentUser.uid)
-      state.saveUser(auth.currentUser.displayName,"User",auth.currentUser.email, "Password")
+      state.saveUser(auth.currentUser.displayName,"User",auth.currentUser.email, "Password");
       navigate('/home/estimate');
     } catch (error) {
       setError('Datos incorrectos');

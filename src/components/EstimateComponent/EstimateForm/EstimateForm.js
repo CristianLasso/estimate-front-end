@@ -22,9 +22,9 @@ const EstimateForm = () => {
     const [nearHousesReq, {isLoading: nearHousesLoading, data:nearHouses}] = useNearHousesMutation();
 
     const handleClick = async (event) => {
-        setLat(state.marker[0])
-        setLon(state.marker[1])
-        if((area === "" || room === "" || bath === "" || garage === "" || stratus === "")){
+        setLat(state.marker[0]);
+        setLon(state.marker[1]);
+        if((area === "" || room === "" || bath === "" || garage === "" || stratus === "" || state.marker[0]==="" || state.marker[1] === "")){
             return (
                 Swal.fire({
                     title: 'Falta algo?',
@@ -51,6 +51,7 @@ const EstimateForm = () => {
         };
         predictReq(prediction);
         state.setEstimateCost(priceResp);
+        state.getUser(auth.currentUser.uid);
     };
 
     const estratos = [

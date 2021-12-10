@@ -36,7 +36,7 @@ export const AppContextWrapper = (props) => {
   const getUser = async(userId) => {
     console.log(userId)
     const datos = await getDoc(doc(db,'users', userId))
-    console.log(datos.data())
+    // console.log(datos.data())
     setUsers(datos.data())
     
   }
@@ -80,7 +80,9 @@ export const AppContextWrapper = (props) => {
       password: md5(userPassword)
     };
     try {
-      postUserBD(newUser);
+      postUserBD(newUser).then(()=>{
+        getUser(newUser.id)
+      });
     } catch (e) {
       console.log(e);
     }

@@ -219,11 +219,11 @@ export default function EnhancedTable() {
 
   const state = useContext(AppContext);
 
-  console.log(state.users.Predictions);
-
-  rows = state.users.Predictions.map((predict) => 
-    createData(predict.area, predict.rooms, predict.bathrooms, predict.garages, predict.sel, predict.lan, predict.lon, predict.result)
-  )
+  if(state.users!==null && state.users.Predictions!=null){
+    rows = state.users.Predictions.map((predict) => 
+      createData(predict.area, predict.rooms, predict.bathrooms, predict.garages, predict.sel, predict.lan, predict.lon, predict.result)
+    )
+  }
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';

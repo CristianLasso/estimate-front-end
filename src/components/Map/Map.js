@@ -22,8 +22,8 @@ const Map = (props) => {
                     let latLngValue = event.latLng.toUrlValue().split(",");
                     setCenter({lat: parseFloat(latLngValue[0]), lng:parseFloat(latLngValue[1])});
                     state.setMarker(latLngValue);
-                    props.latData(event.latLng.lat);
-                    props.lngData(event.latLng.lng);
+                    props.latData(parseFloat(latLngValue[0]));
+                    props.lngData(parseFloat(latLngValue[1]));
                     
                 }}
             >  

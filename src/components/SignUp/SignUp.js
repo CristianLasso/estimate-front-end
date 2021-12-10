@@ -8,7 +8,7 @@ import Input from '@mui/material/Input';
 import Button from '@mui/material/Button';
 import Swal from 'sweetalert2'
 import background from "../../assets/bluewall.jpg"
-
+import { auth } from '../../config/firebase/firebase';
 import { useAuth } from '../../context/AuthContext';
 
 
@@ -16,7 +16,6 @@ export const SignUp = (props) => {
   const state = useContext(AppContext);
 
   const { signup } = useAuth();
-  console.log(props.flag)
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
@@ -41,7 +40,8 @@ export const SignUp = (props) => {
     } else {
       try {
         await signup(email, password);
-        state.saveUser(name, lastName, email, password)
+        state.saveUser(name, lastName, email, password);
+        state.setEstimateCost(0);
         navigate('/home/estimate');
       } catch (error) {
         setError('Error de credenciales');

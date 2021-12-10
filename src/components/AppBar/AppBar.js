@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState,useContext} from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,9 +11,10 @@ import "./AppBar.css"
 
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import AppContext from '../../context/AppContext';
 
 export default function ButtonAppBar() {
-
+    const state = useContext(AppContext);
     const { logout } = useAuth();
     const navigate = useNavigate();
     const [error, setError] = useState('');
@@ -32,6 +33,8 @@ export default function ButtonAppBar() {
     };
 
     const handleList = () => {
+      state.setMarker(['','']);
+      state.setEstimateCost(0);
       navigate('/home/estimate')
   };
 

@@ -13,7 +13,6 @@ import { useNavigate } from 'react-router-dom';
 
 export const EstimatePage = () => {
     const state = useContext(AppContext);
-
     const [lat, setLat] = useState('');
     const [lng, setLng] = useState('');
 

@@ -16,7 +16,6 @@ import { useGetPredictionsQuery } from "../../redux/api/mainAPI";
 
 export const PredictList = () => {
     const state = useContext(AppContext);
-    console.log(state.users.Predictions);
     const { logout } = useAuth();
     const navigate = useNavigate();
     const [error, setError] = useState('');
@@ -32,7 +31,6 @@ export const PredictList = () => {
     const handlePredictions = () => {
         navigate('/')
     }
-
     return(
         <Box className="background">
             <div className="container">
@@ -41,7 +39,9 @@ export const PredictList = () => {
                     <img src={logo} alt="Logo" />
                 </div>
                 <div className="title">
-                    <h2>Predicciones anteriormente realizadas por el usuario {state.users.name}</h2>
+                   
+                        <h2> anteriormente realizadas por el usuario {state.users? state.users.name: ''}</h2>
+            
                 </div>
                 <TablePredictions></TablePredictions>
             </div>
