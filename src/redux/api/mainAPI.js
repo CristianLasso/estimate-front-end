@@ -18,6 +18,13 @@ export const mainAPI = createApi({
         body: prediction,      
       }),
     }),
+    nearHouses: builder.mutation({
+      query: (latlng) => ({
+        url: "houses",
+        method: "POST",
+        body: latlng,      
+      }),
+    }),
     
    
     
@@ -25,5 +32,6 @@ export const mainAPI = createApi({
 });
 export const {
     usePredictMutation,
-    useGetPredictionsQuery
+    useGetPredictionsQuery,
+    useNearHousesMutation
 } = mainAPI;

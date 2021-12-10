@@ -14,6 +14,9 @@ export const AppContextWrapper = (props) => {
   const [users, setUsers] = useState(null);
   const [estimateCost, setEstimateCost] = useState(0);
   const [marker, setMarker] = useState(['','']);
+  const [nearHouses, setNearHouses] = useState([{}]);
+  
+  const [loading, setLoading] = useState(false);
 
   const saveEstimate = (textArea, textRoom, textBath, textGarage, textStratus, textLat, textLon) => {
     const newEstimate = {
@@ -118,7 +121,12 @@ export const AppContextWrapper = (props) => {
     findUser,
     ////
     marker,
-    setMarker
+    setMarker,
+    ///
+    nearHouses,
+    setNearHouses,
+    loading,
+    setLoading
   };
 
   return (

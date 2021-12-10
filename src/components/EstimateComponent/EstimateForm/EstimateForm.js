@@ -4,7 +4,7 @@ import AppContext from "../../../context/AppContext";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import { usePredictMutation } from "../../../redux/api/mainAPI";
+import { useNearHousesMutation, usePredictMutation } from "../../../redux/api/mainAPI";
 import {auth} from "../../../config/firebase/firebase";
 import Swal from 'sweetalert2'
 
@@ -18,32 +18,12 @@ const EstimateForm = () => {
     const [stratus, setStratus] = useState("");
     const [lat, setLat] = useState(state.lat);
     const [lon, setLon] = useState(state.lon);
-    const [predictReq, {isLoading: predictLoading, data:priceResp}] = usePredictMutation();
+    const [predictReq, {isSuccess : predictLoading, data:priceResp}] = usePredictMutation();
+    const [nearHousesReq, {isLoading: nearHousesLoading, data:nearHouses}] = useNearHousesMutation();
 
     const handleClick = async (event) => {
         setLat(state.marker[0])
         setLon(state.marker[1])
-        state.saveEstimate(area, room, bath, garage, stratus, lat, lon);
-        const prediction = {
-            area: area,
-            rooms: room,
-            bathrooms: area,
-            garages: garage,
-            sel: stratus,
-            longitude: lon,
-            latitude: lat,
-            userId: auth.currentUser.uid
-        }
-        await predictReq(prediction);
-        console.log("Response price:",priceResp);
-        state.setEstimateCost(priceResp);
-        // setArea("");
-        // setRoom("");
-        // setBath("");
-        // setGarage("");
-        // setStratus("");
-        // setLat("");
-        // setLon("");
         if((area === "" || room === "" || bath === "" || garage === "" || stratus === "")){
             return (
                 Swal.fire({
@@ -54,6 +34,25 @@ const EstimateForm = () => {
                     confirmButtonText: "Entendido!"
                 }))
         }
+        state.saveEstimate(area, room, bath, garage, stratus, lat, lon);
+        const prediction = {
+            area: area,
+            rooms: room,
+            bathrooms: area,
+            garages: garage,
+            sel: stratus,
+            latitude: state.marker[0],
+            longitude: state.marker[1],
+            userId: auth.currentUser.uid
+        };
+        const latlng = {
+            latitude: state.marker[0],
+            longitude: state.marker[1]
+        };
+        predictReq(prediction);
+        nearHousesReq(latlng);
+        state.setEstimateCost(priceResp);
+        state.setNearHouses(latlng);
     };
 
     const estratos = [
